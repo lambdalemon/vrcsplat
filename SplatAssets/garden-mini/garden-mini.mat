@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: garden-mini
+  m_Shader: {fileID: 4800000, guid: f531a645849e0b067b8b09de4f72f60d, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _PERSPECTIVE_CORRECT_ON
+  - _SH_ORDER_3RD
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _TexColors:
+        m_Texture: {fileID: 2800000, guid: bfc6533248958968aaf67df073d9504d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TexMeans:
+        m_Texture: {fileID: 2800000, guid: 8f16fdc5e974fc81291d1dcaa9d05c45, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TexOrder:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TexQuats:
+        m_Texture: {fileID: 2800000, guid: b5672b3f40c232193b62853bf544d8fc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TexScales:
+        m_Texture: {fileID: 2800000, guid: b53fdefaea9a62727887f3553c16530f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TexShCentroids:
+        m_Texture: {fileID: 2800000, guid: 5b3228032d79bf22a882eac856b7ec7d, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlphaCutoff: 0.06
+    - _Log2MinScale: -12
+    - _ONLY_SH: 0
+    - _PERSPECTIVE_CORRECT: 1
+    - _SH_ORDER: 3
+    - _ShMax: 0.36809194
+    - _ShMin: -0.4447654
+    m_Colors:
+    - _ScalesMax: {r: 2.4885466, g: 2.4797716, b: 3.5468972, a: 0}
+    - _ScalesMin: {r: -18.602047, g: -18.094412, b: -18.099485, a: 0}
+  m_BuildTextureStacks: []
