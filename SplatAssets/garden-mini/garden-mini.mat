@@ -59,6 +59,7 @@ Material:
     - _ShMax: 0.36809194
     - _ShMin: -0.4447654
     m_Colors:
+    - _MirrorCameraPos: {r: 0, g: 0, b: 0, a: 0}
     - _ScalesMax: {r: 2.4885466, g: 2.4797716, b: 3.5468972, a: 0}
     - _ScalesMin: {r: -18.602047, g: -18.094412, b: -18.099485, a: 0}
   m_BuildTextureStacks: []

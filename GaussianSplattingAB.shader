@@ -17,6 +17,7 @@ Shader "vrcsplat/GaussianSplattingAB"
         [Toggle] _ONLY_SH ("Only SH", Float) = 0
         [KeywordEnum(0th, 1st, 2nd, 3rd)] _SH_ORDER ("SH Order", Float) = 3
         [HideInInspector] _TexOrder ("Splat Order", 2DArray) = "" {}
+        [HideInInspector] _MirrorCameraPos ("Mirror Camera Position", Vector) = (0, 0, 0, 0)
     }
     SubShader
     {

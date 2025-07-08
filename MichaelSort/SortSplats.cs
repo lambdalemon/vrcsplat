@@ -2,6 +2,8 @@ using UnityEngine;
 using UdonSharp;
 using VRC.SDKBase;
 using VRC.SDK3.Rendering;
+using System.Numerics;
+using Vector3 = UnityEngine.Vector3;
 
 [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
 public class SortSplats : UdonSharpBehaviour
@@ -10,7 +12,8 @@ public class SortSplats : UdonSharpBehaviour
     // public Texture texMeans;
     // public RenderTexture texDebug;
     public Material mat;
-    private Vector3 _prevPhotoCameraPos; 
+    public GameObject mirror;
+    private Vector3 _prevPhotoCameraPos;
 
     void Start()
     {
@@ -24,13 +27,26 @@ public class SortSplats : UdonSharpBehaviour
 
     void Update()
     {
-        Sort(VRCCameraSettings.ScreenCamera.Position, 0);
+        Vector3 screenCamPos = VRCCameraSettings.ScreenCamera.Position;
+        Sort(screenCamPos, 0);
 
         VRCCameraSettings photoCam = VRCCameraSettings.PhotoCamera;
         if (photoCam != null && photoCam.Active && photoCam.Position != _prevPhotoCameraPos)
         {
             _prevPhotoCameraPos = photoCam.Position;
             Sort(photoCam.Position, 1);
+        }
+
+        if (mirror != null && mirror.activeInHierarchy)
+        {
+            Vector3 mirrorZ = mirror.transform.forward;
+            float zDist = Vector3.Dot(mirrorZ, mirror.transform.position - screenCamPos);
+            if (zDist > 0)
+            {
+                Vector3 mirrorCamPos = screenCamPos + 2 * zDist * mirrorZ;
+                GetComponent<MeshRenderer>().material.SetVector("_MirrorCameraPos", mirrorCamPos);
+                Sort(mirrorCamPos, 2);
+            }
         }
     }
 

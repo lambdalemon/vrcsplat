@@ -21,6 +21,8 @@ float _Decay;
 
 #ifdef _ALPHA_BLENDING_ON
 Texture2DArray<float> _TexOrder;
+float3 _MirrorCameraPos, _VRChatMirrorCameraPos;
+float _VRChatMirrorMode;
 #include "MichaelSort/SortUtils.cginc"
 #endif
 
@@ -59,7 +61,8 @@ SplatData LoadSplatData(uint id)
 {
     #ifdef _ALPHA_BLENDING_ON
     uint2 coord1 = IdToUV(id);
-    uint slice = _VRChatCameraMode > 0;
+    bool inMirror = _VRChatMirrorMode > 0 && all(abs(_VRChatMirrorCameraPos - _MirrorCameraPos) < 1e-4);
+    uint slice = inMirror ? 2 : (_VRChatCameraMode > 0);
     id = ASUINT_NO_DENORM(_TexOrder[uint3(coord1, slice)]);
     #endif
     uint2 coord = uint2(id % _TexMeans_TexelSize.z, id / _TexMeans_TexelSize.z);
@@ -328,6 +331,7 @@ void geo(point v2g input[1], inout TriangleStream<g2f> triStream, uint instanceI
         o.vertex = center + extent * float4(quadPos, QUADPOS_Z, 0);
         o.planeX = PMT[0] - PMT[3] * o.vertex.x;
         o.planeY = PMT[1] - PMT[3] * o.vertex.y;
+        o.vertex *= PMT._m33;
         #else
         quadPos *= 2;
         o.pos = quadPos;
@@ -371,15 +375,19 @@ float4 frag(g2f i
 {
     UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
 
+    float alpha = i.color.a;
+    #ifdef _STOCHASTIC_TAA_ON
+    alpha = abs(alpha);
+    #endif
     #ifdef _PERSPECTIVE_CORRECT_ON
     float3 m = i.planeX.w * i.planeY.xyz - i.planeX.xyz * i.planeY.w;
     float3 d = cross(i.planeX.xyz, i.planeY.xyz);
     float numerator = dot(m, m);
     float denominator = dot(d, d);
     if (numerator > MAX_CUTOFF2 * denominator) discard;
-    float alpha = exp(-0.5 * numerator / denominator) * abs(i.color.a);
+    alpha *= exp(-0.5 * numerator / denominator);
     #else
-    float alpha = exp(-dot(i.pos, i.pos)) * abs(i.color.a);
+    alpha *= exp(-dot(i.pos, i.pos));
     #endif
 
     #ifndef _ALPHA_BLENDING_ON
