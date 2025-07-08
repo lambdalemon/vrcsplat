@@ -12,9 +12,9 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _PERSPECTIVE_CORRECT_ON
   - _SH_ORDER_3RD
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _PERSPECTIVE_CORRECT_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0

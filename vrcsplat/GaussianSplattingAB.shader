@@ -1,4 +1,4 @@
-Shader "vrcsplat/GaussianSplattingTAA"
+Shader "vrcsplat/GaussianSplattingAB"
 {
     Properties
     {
@@ -11,27 +11,26 @@ Shader "vrcsplat/GaussianSplattingTAA"
         [HideInInspector] _TexShCentroids ("SH Centroids", 2D) = "" {}
         [HideInInspector] _ShMin ("SH Min", Float) = 0
         [HideInInspector] _ShMax ("SH Max", Float) = 0
-        [Toggle] _PERSPECTIVE_CORRECT ("Perspective Correct", Float) = 1
         _AlphaCutoff ("Alpha Cutoff", Float) = 0.06
         _Log2MinScale ("Log2(MinScale), if trained with mip-splatting set this to -100", Float) = -12
         [Toggle] _ONLY_SH ("Only SH", Float) = 0
         [KeywordEnum(0th, 1st, 2nd, 3rd)] _SH_ORDER ("SH Order", Float) = 3
-        _Decay ("Decay", Float) = 0.95
-        _BlueNoise ("Blue Noise", 2D) = "" {}
+        [HideInInspector] _TexOrder ("Splat Order", 2DArray) = "" {}
+        [HideInInspector] _MirrorCameraPos ("Mirror Camera Position", Vector) = (0, 0, 0, 0)
     }
     SubShader
     {
-        Tags { "Queue" = "Background+1" }
+        Tags { "Queue" = "Transparent" }
 
         Pass
         {
 			Cull Off
+            Blend SrcAlpha OneMinusSrcAlpha
+            ZWrite Off
             CGPROGRAM
-            #define _STOCHASTIC_TAA_ON
+            #define _ALPHA_BLENDING_ON
         	#include "GaussianSplatting.cginc"
             ENDCG
         }
-
-        GrabPass { "_PrevFrame" }
     }
 }

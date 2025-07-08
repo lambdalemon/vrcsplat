@@ -17,8 +17,6 @@ Perspective-correct splatting from https://github.com/fhahlbohm/depthtested-gaus
 
 Gaussian splat compression forked from gsplat's [png_compression](https://github.com/nerfstudio-project/gsplat/blob/main/gsplat/compression/png_compression.py) module, using [Self-Organizing Gaussians](https://github.com/fraunhoferhhi/Self-Organizing-Gaussians)
 
-Stochastic transparency from https://arxiv.org/pdf/2503.24366
-
 Example trained using https://github.com/fatPeter/mini-splatting2 
 
 and the garden scene from MipNerf360 dataset https://krishnakanthnakka.github.io/mipnerf360/
@@ -26,9 +24,6 @@ and the garden scene from MipNerf360 dataset https://krishnakanthnakka.github.io
 Mirror Switch from [Lura's Switch ver3.00](https://booth.pm/en/items/1969082)
 
 ## Shader Variants
-Three gaussian splatting shaders are included
+Two gaussian splatting shaders are included
 - vrcsplat/GaussianSplattingAB: regular gaussian splatting
 - vrcsplat/GaussianSplattingOpaque: opaque splats similar to https://github.com/cnlohr/slapsplat
-- vrcsplat/GaussianSplattingTAA: stochastic transparency with TAA. VERY BAD DO NOT USE
-
-
