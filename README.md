@@ -1,5 +1,7 @@
 # VRCSplat
 Gaussian splatting in VRChat
+
+USE https://github.com/MichaelMoroz/VRChatGaussianSplatting INSTEAD! MUCH FASTER AND IMPORTS PLY DIRECTLY!
 ## Usage
 0. (Optional, only for Example Scene with Mirror) Import [Lura's Switch ver3.00](https://booth.pm/en/items/1969082)
 1. Install and run https://github.com/lambdalemon/sogs on your ply file.
